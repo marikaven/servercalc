@@ -68,9 +68,37 @@ for (let item of allbuttons) {
 
 let calculate = () => {
 
-        const query = "http://localhost:3333/users?display="+ encodeURIComponent(input.value);
+        /* 
+
+        //GET METHOD
+
+        const query = "http://localhost:3333/users?display=" + encodeURIComponent(input.value);
 
         fetch(query)
+        .then(response => {
+                return response.json();
+        })
+        .then(message => {
+                result.value = message.resu;
+        })
+
+        */
+
+        //POST METHOD
+
+        const query = "http://localhost:3333/users";
+
+        const request = {
+                method: 'POST',
+                header: {
+                        'Content-Type': 'application/json'
+                },
+                body: new URLSearchParams({
+                        'display': input.value
+                })
+        }
+
+        fetch(query, request)
         .then(response => {
                 return response.json();
         })

@@ -12,6 +12,7 @@ app.get('/', (req, res) => {
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
+/*
 app.get('/users', (req, res) => {
     const display = req.query.display;
     res.json({
@@ -19,15 +20,17 @@ app.get('/users', (req, res) => {
         "resu": eval(display)
     })
 })
+*/
 
-/*
 app.post('/users', (req, res) => {
     console.log(req.body);
-    req.body.result = req.body.n1 + req.body.op + req.body.n2;
-    req.body.result = eval(req.body.result);
-    console.log(req.body.result);
+    const display = req.body.display;
+    res.json({
+        'display': display,
+        'resu': eval(display)
+    })
 })
-*/
+
 
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
